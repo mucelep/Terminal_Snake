@@ -125,7 +125,10 @@ void save_score(int score)
 	if (fd != -1)
 	{
 		n = read(fd , buf, sizeof(buf));
-		buf[n] = '\0';
+		if(n > 0)
+			buf[n] = '\0';
+		else
+			buf[0] = '\0';
 		best = atoi(buf);
 		close(fd);
 	}
@@ -178,6 +181,11 @@ void generate_obstecles(t_segment *obs, int lenght, t_segment *snake)
 				}
 			}
 		}
+		if (overlap)
+		{
+		i -= 3;
+		continue;
+		}
 	}
 }
 
@@ -220,8 +228,23 @@ void game_over_animation(t_segment *snake, int length, int food_x, int food_y, t
 	printf("\033[H\033[J");
 	save_score(score);
 }
-void pause_game(char c)
+void pause_game(t_segment *snake, int lenght, int food_x, int food_y, t_segment *obs, int eat)
 {
+	char c;
+	printf("\033[J");
+	while (1)
+	{
+		printf("\033[H");
+		draw_board(snake, lenght, food_x, food_y, obs, 0);
+		int n = read(0, &c, 1);
+		if(c == 'p')
+		{
+			printf("\033[J");
+			break;
+		}
+		printf("\033[1;34m=== PAUSED ===\033[0m\n");
+		usleep(1000000);
+	}
 	
 }
 int main()
@@ -248,6 +271,7 @@ int main()
 	{
 		enable_raw_mode(&original);
 		while (read(0, &c, 1) > 0);
+		memset(obstacles, 0, sizeof(obstacles));
 		while (1)
 		{
 			clear_screen();
@@ -256,8 +280,10 @@ int main()
 			int n = read(0, &c, 1);
 			if (n > 0)
 			{
-				if(c == 'q')
+				if (c == 'q')
 					break;
+				if (c == 'p')
+					pause_game(snake, length, food_x, food_y, obstacles, 0);
 				struct direction new_d = check_way(c);
 				if ((new_d.dx != 0 || new_d.dy != 0) && // wasd den başka bir tuşa bastıysa 
 					!(new_d.dx == -d.dx && new_d.dy == -d.dy))// 180 derece dönüş kontrolü 
@@ -317,6 +343,8 @@ int main()
 			{
 				if(c == 'q')
 					break;
+				if (c == 'p')
+					pause_game(snake, length, food_x, food_y, obstacles, 0);
 				struct direction new_d = check_way(c); //kontrol için geçici struct
 				if ((new_d.dx != 0 || new_d.dy != 0) && // wasd den başka bir tuşa bastıysa 
 					!(new_d.dx == -d.dx && new_d.dy == -d.dy))// 180 derece dönüş kontrolü eğer ki tam tersi değilse yeni yönü güncelliyor

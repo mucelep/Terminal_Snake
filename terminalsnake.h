@@ -3,6 +3,7 @@
 # define WIDTH 50
 # define HEIGHT 25
 # define MAX_LENGTH 100
+# define OBS_COUNT 9
 
 # include <stdio.h>
 # include <unistd.h>

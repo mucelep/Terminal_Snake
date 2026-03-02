@@ -9,7 +9,7 @@ int	easy_mode(t_segment *snake, int length, int food_x, int food_y, struct termi
 	while (1)
 	{
 		clear_screen();
-		draw_board(snake,length,food_x,food_y, obstacles, 0); // oyun alanını çiziyor 
+		draw_board(snake,length, food_x, food_y, obstacles, 0); // oyun alanını çiziyor 
 		printf("score = %d\n", length - 3);
 		int n = read(0, &c, 1);
 		if (n > 0)

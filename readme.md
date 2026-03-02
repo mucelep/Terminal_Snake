@@ -4,7 +4,7 @@ A classic Snake game that runs directly in your terminal, built in C.
 
 ## 🎮 Gameplay
 
-![gameplay](screenshot.png)
+![gameplay](Screenshot.png)
 
 ## 🛠️ Installation
 ```bash

@@ -11,6 +11,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
+# include <time.h>
 
 struct direction
 {
@@ -31,8 +32,8 @@ int		wallcheck_x(int snake_x);
 int		wallcheck_y(int snake_y);
 
 void	game_over_animation(t_segment *snake, int length, int food_x, int food_y, t_segment *obs, int score);
-void	pause_game(t_segment *snake, int lenght, int food_x, int food_y, t_segment *obs, int eat);
 void	draw_board(t_segment *snake, int length,int food_x, int food_y, t_segment *obs, int eat);
+void	pause_game(t_segment *snake, int lenght, int food_x, int food_y, t_segment *obs);
 void	spawn_food(int *food_x, int *food_y, t_segment *obs, int length, t_segment *snake);
 void	generate_obstecles(t_segment *obs, int lenght, t_segment *snake);
 void	disenable_raw_mode(struct termios *orig);

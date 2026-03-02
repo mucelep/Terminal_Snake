@@ -19,7 +19,7 @@ int	hard_mode(t_segment *snake, int length, int food_x, int food_y, struct termi
 			if(c == 'q')
 				break;
 			if (c == 'p')
-				pause_game(snake, length, food_x, food_y, obstacles, 0);
+				pause_game(snake, length, food_x, food_y, obstacles);
 			struct direction new_d = check_way(c); //kontrol için geçici struct
 			if ((new_d.dx != 0 || new_d.dy != 0) && // wasd den başka bir tuşa bastıysa 
 				!(new_d.dx == -d.dx && new_d.dy == -d.dy))// 180 derece dönüş kontrolü eğer ki tam tersi değilse yeni yönü güncelliyor
@@ -82,4 +82,5 @@ int	hard_mode(t_segment *snake, int length, int food_x, int food_y, struct termi
 			usleep(speed);
 	}	
 	disenable_raw_mode(original);
+	return (0);
 }

@@ -14,7 +14,6 @@ SRCS = check_way.c \
 		snake_main.c \
 		snake_starting_coordinates.c \
 		spawn_food.c \
-		terminalsnake.c \
 		wall_check.c
 
 OBJS = $(SRCS:.c=.o)

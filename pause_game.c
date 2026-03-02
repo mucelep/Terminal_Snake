@@ -1,6 +1,6 @@
 #include "terminalsnake.h"
 
-void	pause_game(t_segment *snake, int lenght, int food_x, int food_y, t_segment *obs, int eat)
+void	pause_game(t_segment *snake, int lenght, int food_x, int food_y, t_segment *obs)
 {
 	char c;
 	printf("\033[J");
@@ -9,7 +9,7 @@ void	pause_game(t_segment *snake, int lenght, int food_x, int food_y, t_segment 
 		printf("\033[H");
 		draw_board(snake, lenght, food_x, food_y, obs, 0);
 		int n = read(0, &c, 1);
-		if(c == 'p')
+		if(n == 1 && c == 'p')
 		{
 			printf("\033[J");
 			break;

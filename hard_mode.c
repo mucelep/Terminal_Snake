@@ -6,7 +6,7 @@ int	hard_mode(t_segment *snake, int length, int food_x, int food_y, struct termi
 	int speed = 100000;
 	enable_raw_mode(original);
 	while (read(0, &c, 1) > 0);
-	generate_obstecles(obstacles, length, snake);
+	generate_obstecles(obstacles, length, snake, food_x, food_y);
 	while (1)
 	{
 		clear_screen();
@@ -58,7 +58,7 @@ int	hard_mode(t_segment *snake, int length, int food_x, int food_y, struct termi
 			spawn_food(&food_x, &food_y, obstacles, length, snake);
 			if (speed > 40000)// hızı arttırma 
 				speed -= 5000;
-			generate_obstecles(obstacles, length, snake);// yemek yedikçe yeni yerde üretiyo 
+			generate_obstecles(obstacles, length, snake, food_x, food_y);// yemek yedikçe yeni yerde üretiyo 
 			printf("\033[H");// yem yeme animasyonu 
 			draw_board(snake,length,food_x,food_y,obstacles,1);
 			usleep(150000); //yemek yiyince duraksasın

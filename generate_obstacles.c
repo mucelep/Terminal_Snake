@@ -1,6 +1,6 @@
 #include "terminalsnake.h"
 
-void	generate_obstecles(t_segment *obs, int lenght, t_segment *snake)
+void	generate_obstecles(t_segment *obs, int lenght, t_segment *snake, int food_x, int food_y)
 {
 	for (int i = 0; i < OBS_COUNT; i += 3)
 	{
@@ -11,13 +11,20 @@ void	generate_obstecles(t_segment *obs, int lenght, t_segment *snake)
 
 		for (int k = 0; k < lenght; k++)// engeller yılanın içinde oluştu mu kontrolü
 		{
-			for (int a = 2; a >= 0; a--)
+			for (int a = 0; a < 3; a++)
 			{
-				if(snake[k].x == start_x + a && snake[k].y == start_y)
+				if (dir == 0 && snake[k].x == start_x + a && snake[k].y == start_y)
 					overlap = 1;
-				if(snake[k].x == start_x && snake[k].y == start_y + a)
+				if (dir == 1 && snake[k].x == start_x && snake[k].y == start_y + a)
 					overlap = 1;
 			}
+		}
+		for (int a = 0; a < 3; a++) // engeller yemin üstüne olustu mu 
+		{
+			if (dir == 0 && food_x == start_x + a && food_y == start_y)
+				overlap = 1;
+			if (dir == 1 && food_x == start_x && food_y == start_y + a)
+				overlap = 1;
 		}
 		if (!overlap)
 		{

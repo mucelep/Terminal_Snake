@@ -61,6 +61,7 @@ make
 
 ## ▶️ Nasıl Oynanır
 ```bash
+ make
 ./snake
 ```
 

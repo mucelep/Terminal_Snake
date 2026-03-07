@@ -27,10 +27,10 @@ void	draw_board(t_segment *snake, int length,int food_x, int food_y, t_segment *
 				if (eat)
 					printf("\033[31m+\033[0m");// yemek yediyse + olsun
 				else
-					printf("\033[0;32m\xe2\x96\x88\033[0m");
+					printf("\033[38;2;0;255;0m\xe2\x96\x88\033[0m");
 			}
 			else if (is_snake)
-				printf("\033[2;32m\xe2\x96\x93\033[0m");
+				printf("\033[38;2;0;100;0m\xe2\x96\x88\033[0m");
 			else if (is_obstecles)
 				printf("\033[38;2;255;0;150mX\033[0m");// engeller kırmızı 
 			else if ((y == food_y && x == food_x))

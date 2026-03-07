@@ -15,6 +15,7 @@ make
 
 ## ▶️ How to Play
 ```bash
+ make
 ./snake
 ```
 

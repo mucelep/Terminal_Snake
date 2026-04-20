@@ -1,7 +1,7 @@
 #ifndef TERMINAL_SNAKE_H
 # define TERMINAL_SNAKE_H
 # define WIDTH 50
-# define HEIGHT 25
+# define HEIGHT 22
 # define MAX_LENGTH 100
 # define OBS_COUNT 9
 
